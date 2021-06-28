@@ -1,0 +1,85 @@
+body {
+  font-family: sans-serif;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.checkbox {
+  display: none;
+}
+
+.label-checkbox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.8;
+  background: linear-gradient(
+    45deg,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(1, 119, 251, 1) 100%
+  );
+  box-shadow: 0 0 15px 0px #cccccc;
+}
+
+.label-checkbox:hover {
+  transform: scale(1);
+  animation: popup 0.3s ease-in-out;
+}
+
+.checkbox:not(:checked) ~ .label-checkbox::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  width: 94%;
+  height: 94%;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.label-checkbox::after {
+  content: "";
+  transform: rotate(-45deg) translate(4%, -4%) scale(0);
+}
+
+.checkbox:checked ~ .label-checkbox::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 30%;
+  border-left: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+  box-sizing: border-box;
+  transform: rotate(-45deg) translate(4%, -4%) scale(1);
+  transition: transform 0.3s;
+  animation: popupTick 0.3s;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.98);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.99);
+  }
+}
+
+@keyframes popupTick {
+  0% {
+    transform: rotate(-45deg) translate(4%, -4%) scale(0.98);
+  }
+  40% {
+    transform: rotate(-45deg) translate(4%, -4%) scale(1.05);
+  }
+  80% {
+    transform: rotate(-45deg) translate(4%, -4%) scale(0.99);
+  }
+}
